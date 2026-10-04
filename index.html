@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantry</title>
+  <meta name="description" content="Personal archives of coffee, wine, books and vinyl records.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pantry">
+  <meta property="og:title" content="Pantry">
+  <meta property="og:description" content="Personal archives of coffee, wine, books and vinyl records.">
+  <meta property="og:url" content="https://datameneses.github.io/pantry/">
+  <meta property="og:image" content="https://datameneses.github.io/pantry/coffee/images/social-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/home.css">
+</head>
+<body>
+  <div class="home-header">Pantry</div>
+  <main>
+    <h1>Pantry</h1>
+    <p class="intro">Personal archives of the things I collect and learn about.</p>
+
+    <div class="tiles">
+      <div class="tile" id="tile-coffee" style="--accent:#E8834A; --tile-image:url('coffee/images/backgrounds/hero-beans.jpg')">
+        <h2><a class="tile-main" href="coffee/index.html">Coffee</a></h2>
+        <p>Beans tried, brew recipes, gear, and cafes worth visiting.</p>
+        <span class="count" data-count="coffee/data/beans.json" data-noun="beans"></span>
+        <div class="tile-links"><a href="coffee/index.html">Beans</a><a href="coffee/recipes.html">Recipes</a><a href="coffee/equipment.html">Equipment</a><a href="coffee/about.html">About</a></div>
+      </div>
+      <div class="tile" id="tile-wine" style="--accent:#C0355A; --tile-image:url('wine/images/backgrounds/hero-wine.jpg')">
+        <h2><a class="tile-main" href="wine/index.html">Wine</a></h2>
+        <p>Wines tried at home, tasting notes, and a wishlist of what's next.</p>
+        <span class="count" data-count="wine/data/wines.json" data-noun="wines"></span>
+        <div class="tile-links"><a href="wine/index.html">Wines</a><a href="wine/about.html">About</a></div>
+      </div>
+      <div class="tile" id="tile-books" style="--accent:#E0A64A">
+        <h2><a class="tile-main" href="books/index.html">Books</a></h2>
+        <p>Books read, being read, and waiting on the to-read list.</p>
+        <span class="count" data-count="books/data/books.json" data-noun="books read"></span>
+        <div class="tile-links"><a href="books/index.html">Read</a><a href="books/tbr.html">To Read</a></div>
+      </div>
+      <div class="tile" id="tile-vinyls" style="--accent:#2FA79B; --tile-image:url('vinyls/images/backgrounds/hero-vinyl.jpg')">
+        <h2><a class="tile-main" href="vinyls/index.html">Vinyls</a></h2>
+        <p>Records collected, by genre, artist, decade, and origin.</p>
+        <span class="count" data-count="vinyls/data/vinyls.json" data-noun="records"></span>
+        <div class="tile-links"><a href="vinyls/index.html">Vinyls</a><a href="vinyls/about.html">About</a></div>
+      </div>
+    </div>
+  </main>
+  <footer>Pantry (a personal project)</footer>
+  <script>
+    document.querySelectorAll("[data-count]").forEach((el) => {
+      fetch(el.dataset.count).then((r) => r.json()).then((d) => {
+        el.textContent = `${d.length} ${el.dataset.noun}`;
+      }).catch(() => {});
+    });
+  </script>
+</body>
+</html>

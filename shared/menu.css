@@ -1,0 +1,107 @@
+/* Dropdown menu, loaded after each section's own style.css so it picks up
+   that section's colours (--color-accent, --color-border, ...). */
+nav.site-nav .menu-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+nav.site-nav .menu-group > a.menu-top.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.menu-caret {
+  background: none;
+  border: none;
+  color: var(--color-text-soft);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  line-height: 1;
+}
+
+.menu-caret:hover,
+.menu-group.open .menu-caret {
+  color: var(--color-text);
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 11rem;
+  padding: 0.5rem 0.25rem;
+  margin-top: 0.4rem;
+  background: var(--color-bg-card-solid, #1b1b1b);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 30;
+}
+
+/* Bridge the gap between the label and the panel so hover doesn't drop. */
+.submenu::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+}
+
+.menu-group:hover > .submenu,
+.menu-group:focus-within > .submenu,
+.menu-group.open > .submenu {
+  display: flex;
+}
+
+nav.site-nav .submenu a {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  border-bottom: none;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+nav.site-nav .submenu a:hover,
+nav.site-nav .submenu a.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+}
+
+@media (max-width: 640px) {
+  nav.site-nav .menu-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .menu-caret {
+    display: none;
+  }
+
+  .submenu,
+  .menu-group:hover > .submenu {
+    display: flex;
+    position: static;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 0.25rem 1rem;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .submenu::before {
+    display: none;
+  }
+
+  nav.site-nav .submenu a {
+    padding: 0.25rem 0;
+  }
+}
